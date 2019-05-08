@@ -1,3 +1,7 @@
+/**
+ * The User Schema from mongoose
+ * 
+ */
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 

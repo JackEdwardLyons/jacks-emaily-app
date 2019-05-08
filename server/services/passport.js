@@ -1,3 +1,7 @@
+/**
+ * Everything required from passport.js
+ * in order to set up authentication
+ */
 const passport = require('passport')
 const googleStrategy = require('passport-google-oauth20').Strategy
 const keys = require('../config/keys')
@@ -5,14 +9,21 @@ const mongoose = require('mongoose')
 // Fetch all users out of mongoose
 const User = mongoose.model('users')
 
-// serializeUser fn (set to cookies)
+// SerializeUser fn (set to cookies)
 // 1st arg is the newly generated User
 // 2nd arg is the done() cb
 passport.serializeUser((user, done) => {
   // the user.id is the unique id 
   // generated in mongo when a new
-  // User record is created
+  // User record is created 
   done(null, user.id)
+})
+
+// Turns the userId back into a user
+passport.deserializeUser((userId, done) => {
+  User.findById(userId).then(user => {
+    done(null, user)
+  })
 })
 
 /*
