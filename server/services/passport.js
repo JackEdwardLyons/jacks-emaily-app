@@ -33,7 +33,8 @@ passport.use(
   new googleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true // because Heroku uses a proxy
   }, (accessToken, refreshToken, profile, done) => {
     // Find the first User record with a googleId  
     // that matches the profile id

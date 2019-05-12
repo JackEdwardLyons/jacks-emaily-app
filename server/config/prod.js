@@ -1,6 +1,8 @@
 /**
  * Production environment credentials 
  * Vars stored on live server
+ * Site live at: http://enigmatic-lowlands-60669.herokuapp.com
+ * 
  */
 module.exports = {
   googleClientID: process.env.GOOGLE_CLIENT_ID,
