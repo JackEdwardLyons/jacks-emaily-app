@@ -20,8 +20,17 @@ app.use(
 // Initialize Poassport
 app.use(passport.initialize())
 app.use(passport.session()) 
+
 //  Connect the DB
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
+
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled Rejection at:', reason.stack || reason)
+  // Recommended: send the information to sentry.io
+  // or whatever crash reporting service you use
+})
+
 // Include all Auth routes into the app
 require('./routes/authRoutes')(app)
 // Fire up the app on localhost:5000
