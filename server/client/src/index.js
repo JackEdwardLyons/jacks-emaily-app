@@ -1,12 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// The <Provider /> makes the Redux store available to any nested 
+// components that have been wrapped in the connect() function.
+// ref: https://react-redux.js.org/api/provider
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import App from './App'
+import reducers from './reducers'
+
+// Redux store that holds the complete state tree of the app.
+// There should only be a single store in your app.
+// ref: https://redux.js.org/api/createstore
+const store = createStore(() => reducers, {}, applyMiddleware())
+
+ReactDOM.render(
+  <Provider store={ store }>
+    <App />
+  </Provider>, 
+  document.getElementById('root')
+)
