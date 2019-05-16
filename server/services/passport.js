@@ -28,30 +28,31 @@ passport.deserializeUser((userId, done) => {
 
 /*
  ** Google Passport Authentication 
- ** ------------------------------- */
+ ** ------------------------------- 
+ */
 passport.use(
   new googleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback',
     proxy: true // because Heroku uses a proxy
-  }, (accessToken, refreshToken, profile, done) => {
+  },
+  async function setGoogleUser(accessToken, refreshToken, profile, done) {
     // Find the first User record with a googleId  
     // that matches the profile id
-    User.findOne({ googleId: profile.id })
-      .then((existingUser) => { 
-        // done fn
-        // 1st arg is the error Object
-        // 2nd arg is the existingUser
-        done(null, existingUser)
-        if (existingUser) return
-        
-        // If no User exists, create and save a 
-        // new User model instance
-        new User({ googleId: profile.id })
-          .save()
-          .then(newUser => done(null, newUser))
-      }
-    )
+    const existingUser = await User.findOne({
+      googleId: profile.id
+    })
+
+    // ref: done fn
+    // 1st arg is the error Object
+    // 2nd arg is the existingUser
+    done(null, existingUser)
+    if (existingUser) return
+
+    // If no User, create and save a new User model instance
+    const user = await new User({ googleId: profile.id }).save()
+    done(null, newUser)
+
   })
 )
