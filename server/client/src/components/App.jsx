@@ -10,10 +10,10 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 import HeaderBar from './HeaderBar'
+import LandingView from './LandingView'
 
 const DashboardView = () => <h2>Surveys Dashboard</h2>
 const SurveyNew = () => <h2>SurveyNew</h2>
-const LandingView = () => <h2>Landing</h2>
 
 class App extends Component {
 

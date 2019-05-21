@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import  { Link } from 'react-router-dom'
 
 class HeaderBar extends Component {
 
@@ -19,14 +20,26 @@ class HeaderBar extends Component {
   }
 
   render() {
+    const isLoggedIn = this.props.auth
+
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <a className="navbar-brand" href="/">Emaily App</a>
+          <Link 
+            className="navbar-brand" 
+            to={ isLoggedIn ? '/surveys' : '/' }
+          >
+            Emaily App
+          </Link>
 
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="/surveys">Surveys </a>
+              <Link 
+                className="nav-link"
+                to={ isLoggedIn ? '/surveys' : '/' }
+              >
+                Surveys 
+              </Link>
             </li>
           </ul>
 
