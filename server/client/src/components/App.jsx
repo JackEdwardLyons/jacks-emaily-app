@@ -5,8 +5,11 @@ import React, { Component } from 'react'
 // to keep your UI in sync with the URL.
 // ref: https://reacttraining.com/react-router/web/api
 import { BrowserRouter, Route } from 'react-router-dom'
+// Gives react components the ability to call action creators
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
-import HeaderBar from './components/HeaderBar'
+import HeaderBar from './HeaderBar'
 
 const DashboardView = () => <h2>Dashboard</h2>
 const SurveyNew = () => <h2>SurveyNew</h2>
@@ -15,7 +18,7 @@ const LandingView = () => <h2>Landing</h2>
 class App extends Component {
 
   componentDidMount () {
-    
+    this.props.fetchUser()
   }
 
   render () {
@@ -36,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect(null, actions)(App)

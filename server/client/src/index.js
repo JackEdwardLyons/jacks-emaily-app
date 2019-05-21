@@ -12,15 +12,13 @@ import { createStore, applyMiddleware } from 'redux'
 // that interacts with the store.
 import reduxThunk from 'redux-thunk'
 
-import App from './App'
+import App from './components/App'
 import reducers from './reducers'
-
-
 
 // Redux store that holds the complete state tree of the app.
 // There should only be a single store in your app.
 // ref: https://redux.js.org/api/createstore
-const store = createStore(() => reducers, {}, applyMiddleware(reduxThunk))
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 
 ReactDOM.render(
   <Provider store={ store }>
