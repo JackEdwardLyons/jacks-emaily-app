@@ -11,7 +11,7 @@ import * as actions from '../actions'
 
 import HeaderBar from './HeaderBar'
 
-const DashboardView = () => <h2>Dashboard</h2>
+const DashboardView = () => <h2>Surveys Dashboard</h2>
 const SurveyNew = () => <h2>SurveyNew</h2>
 const LandingView = () => <h2>Landing</h2>
 

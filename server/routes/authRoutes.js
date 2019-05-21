@@ -8,16 +8,23 @@ module.exports = (app) => {
   app.get(
     '/auth/google',
     passport.authenticate('google', {
-      // tells google what access we want from their profile
+      // tells google what access we 
+      // want from their profile
       scope: ['profile', 'email']
     })
   )
 
-  app.get('/auth/google/callback', passport.authenticate('google'))
+  app.get(
+    '/auth/google/callback', 
+    passport.authenticate('google'), 
+    (req, res) => res.redirect('/surveys')
+  )
   
-  app.get('/logout', (req, res) => {
-    // Logout  fn attached to the req object via passport
+  app.get('/api/logout', (req, res) => {
+    // Logout fn attached to the 
+    // req object via passport
     req.logout()
+    res.redirect('/')
   })
 
   // Check to see if a user is logged  in
