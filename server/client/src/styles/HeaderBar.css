@@ -1,0 +1,10 @@
+/* HeaderBar Component Styles */
+.navbar li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 12px;
+}
+
+.navbar-right li {
+  padding-top: .625rem;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import  { Link } from 'react-router-dom'
+import Payments from './Payments'
+import '../styles/HeaderBar.css'
 
 class HeaderBar extends Component {
 
@@ -9,13 +11,12 @@ class HeaderBar extends Component {
       case null:
         return ''
       case false:
-        return (
-          <a href="/auth/google" className="btn btn-outline-danger my-2 my-sm-0">Sign In with Google</a>
-        )
+        return <a href="/auth/google" className="btn btn-outline-danger my-2 my-sm-0">Sign In with Google</a>
       default:
-        return (
-          <a href="/api/logout" className="btn btn-outline-danger my-2 my-sm-0">Log Out</a>
-        )
+        return [
+          <li key="1"><Payments /></li>,
+          <li key="2"><a href="/api/logout" className="btn btn-outline-danger">Log Out</a></li>
+        ]
     }
   }
 
@@ -34,7 +35,7 @@ class HeaderBar extends Component {
 
           <ul className="navbar-nav mr-auto">
             { isLoggedIn && 
-              <li className="nav-item active">
+              <li className="nav-item">
                 <Link 
                   className="nav-link"
                   to={ isLoggedIn ? '/surveys' : '/' }
@@ -45,9 +46,9 @@ class HeaderBar extends Component {
             }
           </ul>
 
-          <div className="" id="navbarSupportedContent">
+          <ul className="navbar-right">
             { this.renderContent() }
-          </div>
+          </ul>
         </div>
       </nav>
     )
