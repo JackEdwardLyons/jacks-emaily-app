@@ -33,14 +33,16 @@ class HeaderBar extends Component {
           </Link>
 
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <Link 
-                className="nav-link"
-                to={ isLoggedIn ? '/surveys' : '/' }
-              >
-                Surveys 
-              </Link>
-            </li>
+            { isLoggedIn && 
+              <li className="nav-item active">
+                <Link 
+                  className="nav-link"
+                  to={ isLoggedIn ? '/surveys' : '/' }
+                >
+                  Surveys 
+                </Link>
+              </li>
+            }
           </ul>
 
           <div className="" id="navbarSupportedContent">
